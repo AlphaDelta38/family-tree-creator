@@ -1,14 +1,16 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import tseslint from 'typescript-eslint';
+import reactX from 'eslint-plugin-react-x';
+import reactDom from 'eslint-plugin-react-dom';
+import prettierPlugin from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default tseslint.config(
     { ignores: ['dist'] },
@@ -19,6 +21,7 @@ export default tseslint.config(
             ...tseslint.configs.recommendedTypeChecked,
             ...tseslint.configs.strictTypeChecked,
             ...tseslint.configs.stylisticTypeChecked,
+            prettierConfig, // ✅ подключил конфиг Prettier (отключает конфликтующие правила ESLint)
         ],
         files: ['**/*.{ts,tsx}'],
         languageOptions: {
@@ -36,6 +39,7 @@ export default tseslint.config(
             'react-refresh': reactRefresh,
             'react-x': reactX,
             'react-dom': reactDom,
+            prettier: prettierPlugin,
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
@@ -48,6 +52,8 @@ export default tseslint.config(
             ...reactX.configs['recommended-typescript'].rules,
 
             ...reactDom.configs.recommended.rules,
+
+            'prettier/prettier': 'error',
         },
     },
-)
+);
