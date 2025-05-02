@@ -1,6 +1,7 @@
-.main {
-  width: 100%;
-  height: 100%;
+@use './modules/mixin-utils' as mixins;
+
+.main{
+  @include mixins.full-screen;
   display: flex;
   flex-direction: column;
   align-content: start;
@@ -8,4 +9,3 @@
   position: relative;
 }
 
-/*# sourceMappingURL=App.css.map */
