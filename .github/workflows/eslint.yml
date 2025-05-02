@@ -1,12 +1,9 @@
 name: Lint with ESLint
+run-name: lint ESLint and Prettier
 
 on:
-  pull_request:
-    branches:
-      - '*'
+  workflow_dispatch:
   push:
-    branches:
-      - '*'
 
 jobs:
   lint:
