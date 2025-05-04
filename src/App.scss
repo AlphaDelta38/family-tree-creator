@@ -4,8 +4,8 @@
   @include mixins.full-screen;
   display: flex;
   flex-direction: column;
-  align-content: start;
-  justify-content: start;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 

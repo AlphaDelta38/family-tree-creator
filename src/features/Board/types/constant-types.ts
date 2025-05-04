@@ -6,3 +6,8 @@ export interface coordinateInterface {
     prevTranslateX: number;
     prevTranslateY: number;
 }
+
+export interface boardElementsInterface {
+    element: HTMLElement;
+    parent: HTMLElement;
+}

@@ -55,7 +55,8 @@ export default tseslint.config(
 
             'prettier/prettier': 'error',
             'react-hooks/exhaustive-deps': 'off',
-            "@typescript-eslint/restrict-template-expressions": "off"
+            "@typescript-eslint/restrict-template-expressions": "off",
+            "@typescript-eslint/no-non-null-assertion": "off"
         },
     },
 );
