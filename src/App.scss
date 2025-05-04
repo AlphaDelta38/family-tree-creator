@@ -1,4 +1,4 @@
-@use './modules/mixin-utils' as mixins;
+@use './mixin-utils' as mixins;
 
 .main{
   @include mixins.full-screen;

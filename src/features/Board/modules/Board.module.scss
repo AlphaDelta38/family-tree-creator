@@ -1,0 +1,24 @@
+@use '../../../mixin-utils' as mixins;
+
+.container{
+  @include mixins.full-screen;
+  @include mixins.flex-center;
+  position: relative;
+  overflow: hidden;
+}
+
+.board{
+  @include mixins.flex-center;
+  align-items: center;
+  min-height: 4000px;
+  min-width: 4000px;
+  background-color: var(--workspace-color);
+  transform: translate(0, 0);
+  position: absolute;
+}
+
+.test{
+  width: 100px;
+  height: 100px;
+  background-color: black;
+}

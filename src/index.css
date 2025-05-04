@@ -15,4 +15,8 @@ html, body {
   height: 100%;
 }
 
+:root {
+  --workspace-color: #ececec;
+}
+
 /*# sourceMappingURL=index.css.map */

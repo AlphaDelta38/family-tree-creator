@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  min-height: 4000px;
+  min-width: 4000px;
+  background-color: var(--workspace-color);
+  transform: translate(0, 0);
+  position: absolute;
+}
+
+.test {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+}
+
+/*# sourceMappingURL=Board.module.css.map */

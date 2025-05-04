@@ -21,7 +21,7 @@ export default tseslint.config(
             ...tseslint.configs.recommendedTypeChecked,
             ...tseslint.configs.strictTypeChecked,
             ...tseslint.configs.stylisticTypeChecked,
-            prettierConfig, // ✅ подключил конфиг Prettier (отключает конфликтующие правила ESLint)
+            prettierConfig,
         ],
         files: ['**/*.{ts,tsx}'],
         languageOptions: {
@@ -54,6 +54,8 @@ export default tseslint.config(
             ...reactDom.configs.recommended.rules,
 
             'prettier/prettier': 'error',
+            'react-hooks/exhaustive-deps': 'off',
+            "@typescript-eslint/restrict-template-expressions": "off"
         },
     },
 );
