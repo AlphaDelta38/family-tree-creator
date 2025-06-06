@@ -1,0 +1,26 @@
+
+
+.bottomScroll,
+.rightScroll{
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.bottomScroll:hover,
+.rightScroll:hover{
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.bottomScroll{
+  min-width: 2%;
+  height: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rightScroll{
+  width: 4px;
+  min-height: 10%;
+}

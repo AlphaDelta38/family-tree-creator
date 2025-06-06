@@ -11,3 +11,8 @@ export interface boardElementsInterface {
     element: HTMLElement;
     parent: HTMLElement;
 }
+
+export interface coordinateBottomScrollRef {
+    lastX: number,
+    lastScrollX: number,
+}

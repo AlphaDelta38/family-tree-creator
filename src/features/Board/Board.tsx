@@ -5,9 +5,10 @@ import {
     getTranslateValues,
     getNameOfDeviceEvents,
     getClientCoordinate,
-    manageBorderLimits,
 } from '../../utils.ts';
+import { manageBorderLimits } from './utils/board-utils.ts'
 import { DeviceEventsInterface } from '../../utils-types.ts';
+import initSideScroll from './board-additional-move.tsx';
 
 function Board() {
     const boardRef = useRef<HTMLDivElement | null>(null);
@@ -29,6 +30,8 @@ function Board() {
         const coordinate = getClientCoordinate(event);
 
         if (!element) return;
+
+        element.style.transition = 'none';
 
         const rect = element.getBoundingClientRect();
         const prevPosition = getTranslateValues(element);
@@ -106,6 +109,8 @@ function Board() {
 
         element.addEventListener(down, mouse3Down);
 
+        initSideScroll(element);
+
         return () => {
             element.removeEventListener(down, mouse3Down);
             window.removeEventListener(move, mouseMove);
@@ -114,7 +119,7 @@ function Board() {
     }, [boardRef]);
 
     return (
-        <div className={cl.container}>
+        <div id='#BoardContainer' className={cl.container}>
             <div ref={boardRef} className={cl.board}>
                 <div className={cl.test}></div>
             </div>
