@@ -1,5 +1,8 @@
 import { manageBorderObjectInterface}  from "../../../utils-types.ts";
 import { getTranslateValues } from "../../../utils.ts";
+import { getConstants } from "../constants.ts";
+import { setScrollMove } from "./scroll-utils.ts";
+
 
 export function manageBorderLimits(elementData: manageBorderObjectInterface): void {
     const maxX = elementData.prevTranslateX + Math.ceil(elementData.prevRectX) * -1;
@@ -20,6 +23,21 @@ export function manageBorderLimits(elementData: manageBorderObjectInterface): vo
                 : maxY * -1;
     
     elementData.element.style.transform = `translate(${limitedTranslateX}px, ${limitedTranslateY}px)`;
+
+    const Board = getConstants('Board')
+
+    if(!Board) return;
+
+    const leftAndRightWidth = ( ( Board.offsetWidth - window.innerWidth ) / 2)
+    const bottomAndTopWidth = ( ( Board.offsetHeight - window.innerHeight ) / 2)
+
+    const leftPercentage =( limitedTranslateX / leftAndRightWidth ) * 100
+    const topPercentage = ( limitedTranslateY / bottomAndTopWidth ) * 100
+    console.log(elementData)
+
+    console.log(leftPercentage, topPercentage)
+
+    setScrollMove((leftPercentage / 2) + 50, (topPercentage / 2) + 50)
 }
 
 

@@ -3,6 +3,7 @@ import { scrollKeyController } from '../utils/scroll-utils.ts'
 import {ReactElement, useEffect, useRef, useState} from "react";
 import cl from "../modules/board-additional-move.module.scss";
 import { useKeyWithMouseScroll } from "../hooks";
+import {setConstants} from "../constants.ts";
 
 function RightScroll({parent, target}: scrollParamsInterface): ReactElement {
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -30,6 +31,10 @@ function RightScroll({parent, target}: scrollParamsInterface): ReactElement {
         return () => {
             window.removeEventListener("resize", handleResize);
         }
+    }, []);
+
+    useEffect(() => {
+        setConstants(scrollRef.current, 'rightScroll')
     }, []);
 
     return (

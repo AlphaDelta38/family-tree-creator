@@ -9,6 +9,8 @@ import {
 import { manageBorderLimits } from './utils/board-utils.ts'
 import { DeviceEventsInterface } from '../../utils-types.ts';
 import initSideScroll from './board-additional-move.tsx';
+import {setConstants} from "./constants.ts";
+
 
 function Board() {
     const boardRef = useRef<HTMLDivElement | null>(null);
@@ -117,6 +119,10 @@ function Board() {
             window.removeEventListener(up, mouse3Up);
         };
     }, [boardRef]);
+
+    useEffect(() => {
+        setConstants(boardRef.current, 'Board')
+    }, []);
 
     return (
         <div id='#BoardContainer' className={cl.container}>

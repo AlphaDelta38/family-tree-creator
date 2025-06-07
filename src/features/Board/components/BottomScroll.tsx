@@ -1,9 +1,10 @@
 import { scrollParamsInterface } from "../types/types.ts";
-import { scrollKeyController, scrollMouseController } from '../utils/scroll-utils.ts'
-import {coordinateBottomScrollRef} from "../types/constant-types.ts";
-import {ReactElement, useEffect, useRef, useState} from "react";
+import { coordinateBottomScrollRef } from "../types/constant-types.ts";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import cl from "../modules/board-additional-move.module.scss";
 import { useKeyWithMouseScroll } from "../hooks";
+import { getSideInPercent, scrollMouseController } from "../utils/scroll-utils.ts";
+import {setConstants} from "../constants.ts";
 
 function BottomScroll({ parent, target }: scrollParamsInterface): ReactElement {
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -40,19 +41,19 @@ function BottomScroll({ parent, target }: scrollParamsInterface): ReactElement {
         if(!scrollRef.current) return;
 
         const direction = e.clientX - coordinateRef.current.lastX
-        const clampByLimitNumber = Math.max(
-            Math.min(direction + coordinateRef.current.lastScrollX, scrollSideLimitsRef.current),
-            (scrollSideLimitsRef.current * -1)
-        )
+        let currentLeftPercentage = getSideInPercent(scrollRef.current, 'left')
 
-        scrollRef.current.style.left = `${clampByLimitNumber}px`
+        const newLeft = currentLeftPercentage + direction * 0.1
+        const maxValue = Math.max(Math.min(newLeft, 100), 0)
 
+        console.log(newLeft, maxValue)
         scrollMouseController(
-            clampByLimitNumber * -(target.clientWidth / windowWidth ),
+            maxValue - 50,
             target,
             true
         )
 
+        coordinateRef.current.lastX = e.clientX
     }
 
 
@@ -108,6 +109,10 @@ function BottomScroll({ parent, target }: scrollParamsInterface): ReactElement {
             window.removeEventListener("resize", handleResize);
         }
 
+    }, []);
+
+    useEffect(() => {
+        setConstants(scrollRef.current, 'bottomScroll')
     }, []);
 
     return (
